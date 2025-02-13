@@ -1,0 +1,35 @@
+﻿@model PeopleStatusListViewModel
+<!-- Çalışan Ekle, İş Ekle -->
+<div class="row mt-4">
+
+	<div class="col-md-6">
+		<h5>Çalışan Ekle</h5>
+		<form action="/Editor/InsertPeople" method="post" autocomplete="off">
+			<input type="text" class="form-control mb-2" placeholder="Ad Soyad Giriniz" name="AdiSoyadi" required>
+			<button class="btn btn-primary w-100">Çalışan Ekle</button>
+		</form>
+	</div>
+
+	<div class="col-md-6">
+		<h5>İş Ekle</h5>
+		<form action="/Editor/InsertWork" method="post" autocomplete="off">
+			<input type="text" class="form-control mb-2" placeholder="İş Başlığı" name="Title" required>
+			<select class="form-control mb-2" name="StatusId">
+				<option value="" selected disabled>İş Durum Seçimi Yapınız</option>
+				@foreach (var status in Model.Status)
+				{
+					<option value="@status.Id">@status.Durum</option>
+				}
+			</select>
+			<select class="form-control mb-2" name="CalisanId">
+				<option value="" selected disabled>Çalışan Seçimi Yapınız</option>
+				@foreach (var people in Model.People)
+				{
+					<option value="@people.Id">@people.AdiSoyadi</option>
+				}
+			</select>
+			<button class="btn btn-primary w-100">İş Ekle</button>
+		</form>
+	</div>
+
+</div>

@@ -1,0 +1,42 @@
+﻿@model UpdateWorkViewModel
+<!-- Çalışan Ekle, İş Ekle -->
+<div class="row sm-12">
+	<div class="col-sm-12">
+		<h5>İş Güncelle</h5>
+		<form action="/Home/UpdateWork" method="post" autocomplete="off">
+			<input type="hidden" value="@Model.Work.Id" name="Id" />
+			<input type="text" class="form-control mb-2" placeholder="İş Başlığı" name="Title" value="@Model.Work.Title" required>
+			<select class="form-control mb-2" name="StatusId" >
+				<option value="" selected disabled>İş Durum Seçimi Yapınız</option>
+				@foreach (var status in Model.Status)
+				{
+					@if (status.Id == Model.Work.StatusId)
+					{
+						<option value="@status.Id" selected>@status.Durum</option>
+					}
+					else
+					{
+						<option value="@status.Id">@status.Durum</option>
+					}
+				}
+			</select>
+			<select class="form-control mb-2" name="CalisanId">
+				<option value="" selected disabled>Çalışan Seçimi Yapınız</option>
+				@foreach (var people in Model.People)
+				{
+					@if (people.Id == Model.Work.CalisanId)
+					{
+						<option value="@people.Id" selected>@people.AdiSoyadi</option>
+					}
+					else
+					{
+						<option value="@people.Id">@people.AdiSoyadi</option>
+					}
+
+				}
+			</select>
+			<button class="btn btn-primary w-100">İş Güncelle</button>
+		</form>
+	</div>
+
+</div>
